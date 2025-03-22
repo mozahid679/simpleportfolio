@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Mozahidul Islam - Portfolio</title>
+      <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+         document.addEventListener("DOMContentLoaded", function () {
+            // Roles (Qualification section)
+            const roles = [
+               "Full Stack Developer",
+               "Ajob Films",
+               "Web Developer",
+               "Software Engineer",
+               "Youtuber",
+               "Fasteer",
+               "PharmaHeal",
+               "Network Engineer",
+               "Blogger",
+               "UI/UX Designer",
+               "Video Editor",
+               "Content Writer",
+               "EkotaHost",
+               "Computer Engineer",
+               "System Engineer",
+               "The Madvanture",
+               "Noksh Blog",
+            ];
+
+            let shuffledRoles = [...roles]; // Make a copy of the roles array
+            let roleIndex = 0;
+
+            const roleElement = document.getElementById("role");
+
+            // Shuffle the roles array
+            function shuffleArray(array) {
+               for (let i = array.length - 1; i > 0; i--) {
+                  const j = Math.floor(Math.random() * (i + 1));
+                  [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+               }
+            }
+
+            // Update the role after shuffling
+            function updateRole() {
+               roleElement.classList.add("opacity-0");
+               setTimeout(() => {
+                  // Display the current role and update the index
+                  roleElement.textContent = shuffledRoles[roleIndex];
+                  roleElement.classList.remove("opacity-0");
+                  roleIndex++;
+
+                  // Reset after going through all roles
+                  if (roleIndex === shuffledRoles.length) {
+                     shuffledRoles = [...roles]; // Reset the shuffled array
+                     shuffleArray(shuffledRoles); // Shuffle again
+                     roleIndex = 0; // Reset the index
+                  }
+               }, 500);
+            }
+
+            // Shuffle roles initially
+            shuffleArray(shuffledRoles);
+            setInterval(updateRole, 5000);
+
+            // Social Links (Contact section)
+            const socialLinks = [
+               { href: "https://github.com/mozahid679", name: "GitHub" },
+               { href: "https://facebook.com/mozahid679", name: "Facebook" },
+               { href: "https://twitter.com/mozahid679", name: "Twitter" },
+               { href: "https://youtube.com/@mozahid679", name: "YouTube" },
+               {
+                  href: "https://www.linkedin.com/in/mozahid679/",
+                  name: "LinkedIn",
+               },
+            ];
+
+            // Function to create links dynamically (used for both qualifications and contacts)
+            function createLinks(links, containerId) {
+               const container = document.getElementById(containerId);
+               links.forEach((link) => {
+                  const anchor = document.createElement("a");
+                  anchor.href = link.href;
+                  anchor.classList.add(
+                     "text-blue-400",
+                     "inline-block",
+                     "py-2",
+                     "px-4",
+                     "bg-gray-800",
+                     "text-white",
+                     "font-semibold",
+                     "rounded-lg",
+                     "transition-all",
+                     "duration-300",
+                     "ease-in-out",
+                     "hover:bg-gray-950",
+                     "hover:scale-110",
+                     "focus:outline-none",
+                     "focus:ring-2",
+                     "focus:ring-gray-700",
+                     "focus:ring-opacity-50"
+                  );
+                  anchor.textContent = link.name;
+                  anchor.setAttribute("target", "_blank"); // Open links in a new tab
+                  container.appendChild(anchor);
+                  container.appendChild(document.createTextNode(" ")); // Space between links
+               });
+            }
+
+            // Create social links dynamically
+            createLinks(socialLinks, "social-links");
+         });
+      </script>
+   </head>
+   <body
+      class="bg-gray-900 text-white flex items-center justify-center h-screen"
+   >
+      <div class="text-center">
+         <h1 class="text-4xl font-bold">Mozahidul Islam</h1>
+         <p id="role" class="text-2xl mt-4 transition-opacity duration-500">
+            Developer
+         </p>
+         <div class="mt-6">
+            <!-- Contact Section -->
+            <div id="social-links" class="space-x-4"></div>
+         </div>
+      </div>
+   </body>
+</html>
